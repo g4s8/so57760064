@@ -40,8 +40,9 @@ public class JettyBootstrap
             Thread.currentThread().setContextClassLoader(clWar);
 
             File warFile = new File(warLocation.toURI());
-            System.setProperty("org.eclipse.jetty.livewar.LOCATION",warFile.toPath().toRealPath().toString());
-
+            if (!System.getProperties().contains("org.eclipse.jetty.liwewar.LOCATION")) {
+                System.setProperty("org.eclipse.jetty.livewar.LOCATION",warFile.toPath().toRealPath().toString());
+            }
             Class<?> mainClass = Class.forName("jetty.livewar.ServerMain",false,clWar);
             Method mainMethod = mainClass.getMethod("main",args.getClass());
             mainMethod.invoke(mainClass,new Object[] { args });

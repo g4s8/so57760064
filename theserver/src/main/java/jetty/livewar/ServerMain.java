@@ -69,10 +69,11 @@ public class ServerMain
     private OperationalMode getOperationalMode() throws IOException
     {
         String warLocation = System.getProperty("org.eclipse.jetty.livewar.LOCATION");
+        System.out.printf("livewar.LOCATION=%s\n", warLocation);
         if (warLocation != null)
         {
             Path warPath = new File(warLocation).toPath().toRealPath();
-            if (Files.exists(warPath) && Files.isDirectory(warPath))
+            if (Files.exists(warPath))
             {
                 this.basePath = warPath;
                 return OperationalMode.PROD;
